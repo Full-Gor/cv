@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Développeur Web</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        :root {
+            --primary: #0a2540;
+            --secondary: #00b4d8;
+            --accent: #00e5ff;
+            --light: #f8f9fa;
+            --dark: #121212;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            background-color: var(--dark);
+            background-image: linear-gradient(135deg, #121212 25%, #1a1a1a 25%, #1a1a1a 50%, #121212 50%, #121212 75%, #1a1a1a 75%, #1a1a1a 100%);
+            background-size: 40px 40px;
+            color: var(--light);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #0c1421, #0a2540);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                        inset 0 0 15px rgba(0, 180, 216, 0.2),
+                        0 0 20px rgba(0, 229, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-left: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 229, 255, 0.03) 10px,
+                rgba(0, 229, 255, 0.03) 20px
+            );
+            z-index: 0;
+        }
+        
+        .container > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 30%;
+            width: 40%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+        }
+        
+        .profile-name {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(to right, var(--light) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+        }
+        
+        .profile-title {
+            font-size: 18px;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        
+        .profile-contact {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .profile-contact span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--light);
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 12px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .profile-contact span:hover {
+            background: rgba(0, 180, 216, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 229, 255, 0.3);
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(10, 37, 64, 0.6);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: rgba(0, 229, 255, 0.2);
+        }
+        
+        .section-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 24px;
+            color: var(--secondary);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            height: 40px;
+            overflow: hidden;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .experience-item:hover, .education-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-title, .education-degree {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--light);
+            margin-bottom: 5px;
+        }
+        
+        .experience-company, .education-school {
+            font-size: 16px;
+            color: var(--secondary);
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+        
+        .experience-date, .education-date {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            margin-bottom: 10px;
+            display: inline-block;
+            padding: 2px 10px;
+            background: rgba(0, 180, 216, 0.1);
+            border-radius: 15px;
+        }
+        
+        .experience-description, .education-description {
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .experience-description li, .education-description li {
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .experience-description li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .skill {
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.2), rgba(0, 229, 255, 0.1));
+            color: var(--light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            backdrop-filter: blur(5px);
+        }
+        
+        .skill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 229, 255, 0.5);
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.3), rgba(0, 229, 255, 0.2));
+            border-color: var(--accent);
+        }
+        
+        /* Effet de "ligne de code" aléatoire */
+        .code-line {
+            position: absolute;
+            background: rgba(0, 229, 255, 0.1);
+            height: 1px;
+            width: 100%;
+            left: 0;
+            opacity: 0;
+            animation: codeLine 8s infinite;
+        }
+        
+        @keyframes codeLine {
+            0% { transform: translateY(-100px); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(900px); opacity: 0; }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .profile-name {
+                font-size: 32px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            .profile-contact {
+                gap: 10px;
+            }
+            
+            .profile-contact span {
+                font-size: 12px;
+                padding: 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Lignes de code animées -->
+    <div class="code-line" style="top: 20%;"></div>
+    <div class="code-line" style="top: 40%; animation-delay: 2s;"></div>
+    <div class="code-line" style="top: 60%; animation-delay: 4s;"></div>
+    <div class="code-line" style="top: 80%; animation-delay: 6s;"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="profile-name">Arnaud Barotteaux</h1>
+            <p class="profile-title">Développeur Web Full Stack // Architecte Solutions</p>
+            <div class="profile-contact">
+                <span><i>📧</i> arnaud.barotteaux@email.com</span>
+                <span><i>📱</i> +33 6 12 34 56 78</span>
+                <span><i>🌐</i> portfolio.arnaudbarotteaux.fr</span>
+                <span><i>📍</i> France</span>
+                <span><i>🎂</i> 13/10/1985</span>
+            </div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title" id="about-title"></h2>
+            <p>Développeur web passionné spécialisé en développement front-end et back-end. Expert en HTML, CSS, WordPress, SQL, NoSQL, PHP et Symfony. Compétences en solutions no-code et AJAX. Expérience en gestion d'entreprise dans le secteur de la restauration. À la recherche de nouveaux défis pour mettre à profit mes compétences techniques et ma vision entrepreneuriale.</p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="experience-title"></h2>
+            
+            <div class="experience-item">
+                <div class="experience-title">Gérant</div>
+                <div class="experience-company">IslaFood, O'Tacos, Nashitos, Crousti-Poulet</div>
+                <div class="experience-date">2021</div>
+                <ul class="experience-description">
+                    <li>Gestion complète d'un établissement de restauration</li>
+                    <li>Management d'équipe et formation du personnel</li>
+                    <li>Optimisation des processus opérationnels</li>
+                    <li>Gestion financière et administrative</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-title">Développeur Web Full Stack</div>
+                <div class="experience-company">Projets freelance</div>
+                <div class="experience-date">2020 - Présent</div>
+                <ul class="experience-description">
+                    <li>Développement de sites web avec WordPress</li>
+                    <li>Création d'applications web avec PHP et Symfony</li>
+                    <li>Implémentation de solutions front-end responsive</li>
+                    <li>Gestion de bases de données SQL et NoSQL</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="education-title"></h2>
+            
+            <div class="education-item">
+                <div class="education-degree">Bac +2 Développement Web</div>
+                <div class="education-school">Formation professionnelle</div>
+                <div class="education-date">2025</div>
+                <div class="education-description">Formation complète en développement web front-end et back-end. Technologies modernes et méthodologies de développement.</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-degree">Brevet des Collèges</div>
+                <div class="education-school">Éducation nationale</div>
+                <div class="education-date">2000</div>
+                <div class="education-description">Formation générale avec compétences fondamentales.</div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="skills-title"></h2>
+            
+            <div class="skills-container">
+                <span class="skill">HTML5</span>
+                <span class="skill">CSS3/SASS</span>
+                <span class="skill">WordPress</span>
+                <span class="skill">SQL</span>
+                <span class="skill">NoSQL</span>
+                <span class="skill">No-Code</span>
+                <span class="skill">Front-End</span>
+                <span class="skill">Back-End</span>
+                <span class="skill">AJAX</span>
+                <span class="skill">PHP</span>
+                <span class="skill">Symfony</span>
+                <span class="skill">Gestion de projet</span>
+                <span class="skill">Entrepreneuriat</span>
+                <span class="skill">Management</span>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title" id="hobbies-title"></h2>
+            
+            <div class="skills-container">
+                <span class="skill">Sport</span>
+                <span class="skill">Lecture</span>
+                <span class="skill">Arts martiaux</span>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Fonction pour animer le texte lettre par lettre avec effet sci-fi mais sans corruption
+        function animateText(elementId, text) {
+            const element = document.getElementById(elementId);
+            let index = 0;
+            
+            // Effacer le contenu existant
+            element.textContent = '';
+            
+            // Fonction pour ajouter une lettre sans glitch aléatoire
+            function addLetter() {
+                if (index < text.length) {
+                    // Ajouter la lettre correcte sans glitch
+                    element.textContent += text[index];
+                    index++;
+                    setTimeout(addLetter, 100); // Vitesse constante d'apparition des lettres
+                } else {
+                    // Ajouter un effet de scanner sur le texte complet
+                    const scannerEffect = document.createElement('span');
+                    scannerEffect.style.position = 'absolute';
+                    scannerEffect.style.width = '100%';
+                    scannerEffect.style.height = '2px';
+                    scannerEffect.style.background = 'rgba(0, 229, 255, 0.5)';
+                    scannerEffect.style.left = '0';
+                    scannerEffect.style.top = '0'; // Commence en haut
+                    scannerEffect.style.boxShadow = '0 0 10px rgba(0, 229, 255, 0.8)';
+                    scannerEffect.style.animation = 'scan 1s linear';
+                    element.style.position = 'relative';
+                    element.appendChild(scannerEffect);
+                    
+                    // Créer une animation de scan qui se termine en bas du titre
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes scan {
+                            0% { top: 0; }
+                            100% { top: 100%; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    // Une fois que le texte est complet, le faire disparaître après 2 secondes
+                    setTimeout(() => {
+                        // Disparition sans effet de glitch
+                        element.textContent = '';
+                        if (scannerEffect.parentNode === element) {
+                            element.removeChild(scannerEffect);
+                        }
+                        
+                        // Redémarrer l'animation après une courte pause
+                        setTimeout(() => {
+                            index = 0;
+                            addLetter();
+                        }, 500);
+                    }, 2000);
+                }
+            }
+            
+            // Démarrer l'animation
+            addLetter();
+        }
+        
+        // Définir les titres des sections
+        const titles = {
+            'about-title': 'À propos',
+            'experience-title': 'Expérience professionnelle',
+            'education-title': 'Formation',
+            'skills-title': 'Compétences techniques',
+            'hobbies-title': 'Centres d\'intérêt'
+        };
+        
+        // Animer chaque titre avec un délai pour les décaler
+        let delay = 0;
+        for (const [id, text] of Object.entries(titles)) {
+            setTimeout(() => {
+                animateText(id, text);
+            }, delay);
+            delay += 500; // Décalage entre les animations des différents titres
+        }
+    </script>
+</body>
+</html>
