@@ -3,306 +3,430 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Développeur Web</title>
+    <title>CV Arnaud Barotteaux - Développeur Web</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-        
-        :root {
-            --primary: #0a2540;
-            --secondary: #00b4d8;
-            --accent: #00e5ff;
-            --light: #f8f9fa;
-            --dark: #121212;
-            --glass: rgba(255, 255, 255, 0.1);
-        }
-        
-        body {
-            background-color: var(--dark);
-            background-image: linear-gradient(135deg, #121212 25%, #1a1a1a 25%, #1a1a1a 50%, #121212 50%, #121212 75%, #1a1a1a 75%, #1a1a1a 100%);
-            background-size: 40px 40px;
-            color: var(--light);
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            background: linear-gradient(145deg, #0c1421, #0a2540);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
-                        inset 0 0 15px rgba(0, 180, 216, 0.2),
-                        0 0 20px rgba(0, 229, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            border-left: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(0, 229, 255, 0.03) 10px,
-                rgba(0, 229, 255, 0.03) 20px
-            );
-            z-index: 0;
-        }
-        
-        .container > * {
-            position: relative;
-            z-index: 1;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-        }
-        
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 30%;
-            width: 40%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-        }
-        
-        .profile-name {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--light);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            background: linear-gradient(to right, var(--light) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
-        }
-        
-        .profile-title {
-            font-size: 18px;
-            color: var(--secondary);
-            margin-bottom: 25px;
-            font-weight: 300;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-        
-        .profile-contact {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-top: 25px;
-        }
-        
-        .profile-contact span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--light);
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 6px 12px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .profile-contact span:hover {
-            background: rgba(0, 180, 216, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border-color: rgba(0, 229, 255, 0.3);
-        }
-        
-        .section {
-            margin-bottom: 40px;
-            padding: 20px;
-            border-radius: 10px;
-            background: rgba(10, 37, 64, 0.6);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease;
-        }
-        
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            border-color: rgba(0, 229, 255, 0.2);
-        }
-        
-        .section-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 24px;
-            color: var(--secondary);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            position: relative;
-            height: 40px;
-            overflow: hidden;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, var(--secondary), transparent);
-        }
-        
-        .experience-item, .education-item {
-            margin-bottom: 25px;
-            padding: 15px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 3px solid var(--accent);
-            transition: all 0.3s ease;
-        }
-        
-        .experience-item:hover, .education-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .experience-title, .education-degree {
-            font-size: 18px;
-            font-weight: 500;
-            color: var(--light);
-            margin-bottom: 5px;
-        }
-        
-        .experience-company, .education-school {
-            font-size: 16px;
-            color: var(--secondary);
-            margin-bottom: 5px;
-            font-weight: 400;
-        }
-        
-        .experience-date, .education-date {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
-            font-style: italic;
-            margin-bottom: 10px;
-            display: inline-block;
-            padding: 2px 10px;
-            background: rgba(0, 180, 216, 0.1);
-            border-radius: 15px;
-        }
-        
-        .experience-description, .education-description {
-            margin-top: 10px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .experience-description li, .education-description li {
-            margin-bottom: 5px;
-            position: relative;
-            padding-left: 20px;
-        }
-        
-        .experience-description li::before {
-            content: '›';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-        
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .skill {
-            background: linear-gradient(135deg, rgba(0, 180, 216, 0.2), rgba(0, 229, 255, 0.1));
-            color: var(--light);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 229, 255, 0.2);
-            backdrop-filter: blur(5px);
-        }
-        
-        .skill:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 229, 255, 0.5);
-            background: linear-gradient(135deg, rgba(0, 180, 216, 0.3), rgba(0, 229, 255, 0.2));
-            border-color: var(--accent);
-        }
-        
-        /* Effet de "ligne de code" aléatoire */
-        .code-line {
-            position: absolute;
-            background: rgba(0, 229, 255, 0.1);
-            height: 1px;
-            width: 100%;
-            left: 0;
-            opacity: 0;
-            animation: codeLine 8s infinite;
-        }
-        
-        @keyframes codeLine {
-            0% { transform: translateY(-100px); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(900px); opacity: 0; }
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            
-            .profile-name {
-                font-size: 32px;
-            }
-            
-            .section {
-                padding: 15px;
-            }
-            
-            .profile-contact {
-                gap: 10px;
-            }
-            
-            .profile-contact span {
-                font-size: 12px;
-                padding: 4px 8px;
-            }
-        }
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --primary: #0a2540;
+    --secondary: #00b4d8;
+    --accent: #00e5ff;
+    --light: #f8f9fa;
+    --dark: #121212;
+    --matrix: #00FF41;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--dark);
+    background-image: linear-gradient(135deg, #121212 25%, #1a1a1a 25%, #1a1a1a 50%, #121212 50%, #121212 75%, #1a1a1a 75%, #1a1a1a 100%);
+    background-size: 40px 40px;
+    color: var(--light);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #0c1421, #0a2540);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                inset 0 0 15px rgba(0, 180, 216, 0.2),
+                0 0 20px rgba(0, 229, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0, 229, 255, 0.03) 10px,
+        rgba(0, 229, 255, 0.03) 20px
+    );
+    z-index: 0;
+}
+
+.container > * {
+    position: relative;
+    z-index: 1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --primary: #0a2540;
+    --secondary: #00b4d8;
+    --accent: #00e5ff;
+    --light: #f8f9fa;
+    --dark: #121212;
+    --matrix: #00FF41;
+    --glass: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--dark);
+    background-image: linear-gradient(135deg, #121212 25%, #1a1a1a 25%, #1a1a1a 50%, #121212 50%, #121212 75%, #1a1a1a 75%, #1a1a1a 100%);
+    background-size: 40px 40px;
+    color: var(--light);
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #0c1421, #0a2540);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                inset 0 0 15px rgba(0, 180, 216, 0.2),
+                0 0 20px rgba(0, 229, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(0, 229, 255, 0.03) 10px,
+        rgba(0, 229, 255, 0.03) 20px
+    );
+    z-index: 0;
+}
+
+.container > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Profile image with Matrix effect */
+.profile-image-container {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 25px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 
+                inset 0 0 10px rgba(0, 180, 216, 0.3),
+                0 0 20px rgba(0, 229, 255, 0.2);
+    border: 2px solid rgba(0, 229, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#matrix {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.profile-photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 3; /* Augmentation du z-index pour s'assurer que la photo reste au-dessus */
+    border-radius: 50%;
+    opacity: 0.6; /* Légère transparence pour voir l'effet matrix en arrière-plan */
+}
+
+#matrix {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index:1; /* S'assurer que la matrice reste derrière la photo */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 30%;
+    width: 40%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+}
+
+.profile-name {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--light);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(to right, var(--light) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+.profile-title {
+    font-size: 18px;
+    color: var(--secondary);
+    margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.profile-contact {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.profile-contact span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--light);
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profile-contact span:hover {
+    background: rgba(0, 180, 216, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: rgba(0, 229, 255, 0.3);
+}
+
+.section {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(10, 37, 64, 0.6);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 229, 255, 0.2);
+}
+
+.section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px;
+    color: var(--secondary);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    height: 40px;
+    overflow: hidden;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--secondary), transparent);
+}
+
+.experience-item, .education-item {
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid var(--accent);
+    transition: all 0.3s ease;
+}
+
+.experience-item:hover, .education-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.experience-title, .education-degree {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--light);
+    margin-bottom: 5px;
+}
+
+.experience-company, .education-school {
+    font-size: 16px;
+    color: var(--secondary);
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.experience-date, .education-date {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding: 2px 10px;
+    background: rgba(0, 180, 216, 0.1);
+    border-radius: 15px;
+}
+
+.experience-description, .education-description {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.experience-description li, .education-description li {
+    margin-bottom: 5px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.experience-description li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.skill {
+    background: linear-gradient(135deg, rgba(0, 180, 216, 0.2), rgba(0, 229, 255, 0.1));
+    color: var(--light);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.skill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 229, 255, 0.5);
+    background: linear-gradient(135deg, rgba(0, 180, 216, 0.3), rgba(0, 229, 255, 0.2));
+    border-color: var(--accent);
+}
+
+/* Effet de "ligne de code" aléatoire */
+.code-line {
+    position: absolute;
+    background: rgba(0, 229, 255, 0.1);
+    height: 1px;
+    width: 100%;
+    left: 0;
+    opacity: 500;
+    animation: codeLine 8s infinite;
+}
+
+@keyframes codeLine {
+    0% { transform: translateY(-100px); opacity: 9; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { transform: translateY(900px); opacity: 9; }
+}
+
+@keyframes scan {
+    0% { top: 0; }
+    100% { top: 100%; }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .profile-name {
+        font-size: 32px;
+    }
+    
+    .section {
+        padding: 15px;
+    }
+    
+    .profile-contact {
+        gap: 10px;
+    }
+    
+    .profile-contact span {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+    
+    .profile-image-container {
+        width: 150px;
+        height: 150px;
+    }
+}
     </style>
 </head>
 <body>
@@ -314,6 +438,13 @@
     
     <div class="container">
         <header>
+            <div class="profile-image-container">
+                <img src="tof.jpg" alt="Arnaud Barotteaux" class="profile-photo">
+
+                <canvas id="matrix"></canvas>
+                <div class="profile-image-mask"></div>
+            </div>
+          
             <h1 class="profile-name">Arnaud Barotteaux</h1>
             <p class="profile-title">Développeur Web Full Stack // Architecte Solutions</p>
             <div class="profile-contact">
@@ -409,83 +540,152 @@
     </div>
 
     <script>
-        // Fonction pour animer le texte lettre par lettre avec effet sci-fi mais sans corruption
-        function animateText(elementId, text) {
-            const element = document.getElementById(elementId);
-            let index = 0;
+        // Effet Matrix pour la photo de profil
+window.onload = function() {
+    const canvas = document.getElementById('matrix');
+    if (!canvas) {
+        console.error("Canvas element not found");
+        return;
+    }
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Ajuster la taille du canvas à son conteneur
+    function resizeCanvas() {
+        const container = canvas.parentElement;
+        canvas.width = container.offsetWidth;
+        canvas.height = container.offsetHeight;
+    }
+    
+    resizeCanvas();
+    
+    // Caractères pour l'effet Matrix
+    const characters = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+    const charArray = characters.split('');
+    
+    // Configuration
+    const fontSize = 10;
+    const columns = Math.ceil(canvas.width / fontSize);
+    
+    // Tableau pour suivre les gouttes de pluie de code
+    const drops = [];
+    for (let i = 0; i < columns; i++) {
+        drops[i] = Math.random() * canvas.height;
+    }
+    
+    // Fonction de dessin pour l'effet Matrix
+    function drawMatrix() {
+        // Background semi-transparent pour l'effet de traînée
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Configurer la police
+        ctx.font = fontSize + 'px monospace';
+        
+        // Dessiner les caractères pour chaque colonne
+        for (let i = 0; i < drops.length; i++) {
+            // Caractère aléatoire
+            const char = charArray[Math.floor(Math.random() * charArray.length)];
             
-            // Effacer le contenu existant
-            element.textContent = '';
+            // Variation de couleur selon la position
+            const brightness = Math.max(0.2, Math.min(1, (canvas.height - drops[i]) / canvas.height));
+            ctx.fillStyle = `rgba(0, 255, 70, ${brightness})`;
             
-            // Fonction pour ajouter une lettre sans glitch aléatoire
-            function addLetter() {
-                if (index < text.length) {
-                    // Ajouter la lettre correcte sans glitch
-                    element.textContent += text[index];
-                    index++;
-                    setTimeout(addLetter, 100); // Vitesse constante d'apparition des lettres
-                } else {
-                    // Ajouter un effet de scanner sur le texte complet
-                    const scannerEffect = document.createElement('span');
-                    scannerEffect.style.position = 'absolute';
-                    scannerEffect.style.width = '100%';
-                    scannerEffect.style.height = '2px';
-                    scannerEffect.style.background = 'rgba(0, 229, 255, 0.5)';
-                    scannerEffect.style.left = '0';
-                    scannerEffect.style.top = '0'; // Commence en haut
-                    scannerEffect.style.boxShadow = '0 0 10px rgba(0, 229, 255, 0.8)';
-                    scannerEffect.style.animation = 'scan 1s linear';
-                    element.style.position = 'relative';
-                    element.appendChild(scannerEffect);
-                    
-                    // Créer une animation de scan qui se termine en bas du titre
-                    const style = document.createElement('style');
-                    style.textContent = `
-                        @keyframes scan {
-                            0% { top: 0; }
-                            100% { top: 100%; }
-                        }
-                    `;
-                    document.head.appendChild(style);
-                    
-                    // Une fois que le texte est complet, le faire disparaître après 2 secondes
-                    setTimeout(() => {
-                        // Disparition sans effet de glitch
-                        element.textContent = '';
-                        if (scannerEffect.parentNode === element) {
-                            element.removeChild(scannerEffect);
-                        }
-                        
-                        // Redémarrer l'animation après une courte pause
-                        setTimeout(() => {
-                            index = 0;
-                            addLetter();
-                        }, 500);
-                    }, 2000);
-                }
+            // Dessiner le caractère
+            ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+            
+            // Réinitialiser la goutte quand elle atteint le bas
+            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
             }
             
-            // Démarrer l'animation
-            addLetter();
+            // Faire descendre la goutte
+            drops[i] += 0.2;
         }
         
-        // Définir les titres des sections
-        const titles = {
-            'about-title': 'À propos',
-            'experience-title': 'Expérience professionnelle',
-            'education-title': 'Formation',
-            'skills-title': 'Compétences techniques',
-            'hobbies-title': 'Centres d\'intérêt'
-        };
-        
-        // Animer chaque titre avec un délai pour les décaler
-        let delay = 0;
-        for (const [id, text] of Object.entries(titles)) {
+        // Continuer l'animation
+        requestAnimationFrame(drawMatrix);
+    }
+    
+    // Démarrer l'animation
+    drawMatrix();
+    
+    // Gérer le redimensionnement de la fenêtre
+    window.addEventListener('resize', resizeCanvas);
+};
+
+
+// Fonction pour animer le texte lettre par lettre
+function animateText(elementId, text) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+    
+    let index = 0;
+    
+    // Effacer le contenu existant
+    element.textContent = '';
+    
+    // Fonction pour ajouter une lettre
+    function addLetter() {
+        if (index < text.length) {
+            // Ajouter la lettre correcte
+            element.textContent += text[index];
+            index++;
+            setTimeout(addLetter, 100); // Vitesse constante d'apparition des lettres
+        } else {
+            // Ajouter un effet de scanner sur le texte complet
+            const scannerEffect = document.createElement('span');
+            scannerEffect.style.position = 'absolute';
+            scannerEffect.style.width = '100%';
+            scannerEffect.style.height = '2px';
+            scannerEffect.style.background = 'rgba(0, 229, 255, 0.5)';
+            scannerEffect.style.left = '0';
+            scannerEffect.style.top = '0'; // Commence en haut
+            scannerEffect.style.boxShadow = '0 0 10px rgba(0, 229, 255, 0.8)';
+            scannerEffect.style.animation = 'scan 1s linear';
+            element.style.position = 'relative';
+            element.appendChild(scannerEffect);
+            
+            // Une fois que le texte est complet, le faire disparaître après 2 secondes
             setTimeout(() => {
-                animateText(id, text);
-            }, delay);
-            delay += 500; // Décalage entre les animations des différents titres
+                // Disparition sans effet de glitch
+                element.textContent = '';
+                if (scannerEffect.parentNode === element) {
+                    element.removeChild(scannerEffect);
+                }
+                
+                // Redémarrer l'animation après une courte pause
+                setTimeout(() => {
+                    index = 0;
+                    addLetter();
+                }, 500);
+            }, 2000);
         }
+    }
+    
+    // Démarrer l'animation
+    addLetter();
+}
+
+// Définir les titres des sections
+const titles = {
+    'about-title': 'À propos',
+    'experience-title': 'Expérience professionnelle',
+    'education-title': 'Formation',
+    'skills-title': 'Compétences techniques',
+    'hobbies-title': 'Centres d\'intérêt'
+};
+
+// Animer chaque titre avec un délai pour les décaler
+document.addEventListener('DOMContentLoaded', function() {
+    let delay = 0;
+    for (const [id, text] of Object.entries(titles)) {
+        setTimeout(() => {
+            animateText(id, text);
+        }, delay);
+        delay += 500; // Décalage entre les animations des différents titres
+    }
+});
     </script>
 </body>
 </html>
