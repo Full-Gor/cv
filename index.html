@@ -5,73 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Arnaud Barotteaux - Développeur Web</title>
     <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-:root {
-    --primary: #0a2540;
-    --secondary: #00b4d8;
-    --accent: #00e5ff;
-    --light: #f8f9fa;
-    --dark: #121212;
-    --matrix: #00FF41;
-    --glass: rgba(255, 255, 255, 0.1);
-}
-
-body {
-    background-color: var(--dark);
-    background-image: linear-gradient(135deg, #121212 25%, #1a1a1a 25%, #1a1a1a 50%, #121212 50%, #121212 75%, #1a1a1a 75%, #1a1a1a 100%);
-    background-size: 40px 40px;
-    color: var(--light);
-    line-height: 1.6;
-    padding: 20px;
-    min-height: 100vh;
-}
-
-.container {
-    max-width: 850px;
-    margin: 0 auto;
-    background: linear-gradient(145deg, #0c1421, #0a2540);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
-                inset 0 0 15px rgba(0, 180, 216, 0.2),
-                0 0 20px rgba(0, 229, 255, 0.1);
-    position: relative;
-    overflow: hidden;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    border-left: 1px solid rgba(255,255,255,0.1);
-}
-
-.container::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 10px,
-        rgba(0, 229, 255, 0.03) 10px,
-        rgba(0, 229, 255, 0.03) 20px
-    );
-    z-index: 0;
-}
-
-.container > * {
-    position: relative;
-    z-index: 1;
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700&display=swap');
 
 * {
@@ -170,9 +103,10 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 3; /* Augmentation du z-index pour s'assurer que la photo reste au-dessus */
+    object-position: -70% 70%; 
+    z-index: 3;
     border-radius: 50%;
-    opacity: 0.6; /* Légère transparence pour voir l'effet matrix en arrière-plan */
+    opacity: 0.6;
 }
 
 #matrix {
@@ -251,6 +185,11 @@ header::after {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     border-color: rgba(0, 229, 255, 0.3);
+}
+
+.profile-contact a {
+    color: inherit;
+    text-decoration: none;
 }
 
 .section {
@@ -439,8 +378,7 @@ header::after {
     <div class="container">
         <header>
             <div class="profile-image-container">
-                <img src="tof.jpg" alt="Arnaud Barotteaux" class="profile-photo">
-
+                <img src="PROFIL.jpg" alt="Arnaud Barotteaux" class="profile-photo">
                 <canvas id="matrix"></canvas>
                 <div class="profile-image-mask"></div>
             </div>
@@ -448,11 +386,9 @@ header::after {
             <h1 class="profile-name">Arnaud Barotteaux</h1>
             <p class="profile-title">Développeur Web Full Stack // Architecte Solutions</p>
             <div class="profile-contact">
-                <span><i>📧</i> arnaud.barotteaux@email.com</span>
-                <span><i>📱</i> +33 6 12 34 56 78</span>
-                <span><i>🌐</i> portfolio.arnaudbarotteaux.fr</span>
-                <span><i>📍</i> France</span>
-                <span><i>🎂</i> 13/10/1985</span>
+                <span><i>📧</i> arnaudbarotteaux@gmail.com</span>
+                <span><i>📱</i> +33 6 44 76 27 21</span>
+                <span><i>🌐</i> <a href="https://portfolio-chi-neon-30.vercel.app/" target="_blank">portfolio-chi-neon-30.vercel.app</a></span>
             </div>
         </header>
         
@@ -467,7 +403,7 @@ header::after {
             <div class="experience-item">
                 <div class="experience-title">Gérant</div>
                 <div class="experience-company">IslaFood, O'Tacos, Nashitos, Crousti-Poulet</div>
-                <div class="experience-date">2021</div>
+                <div class="experience-date">2015 - 2021</div>
                 <ul class="experience-description">
                     <li>Gestion complète d'un établissement de restauration</li>
                     <li>Management d'équipe et formation du personnel</li>
@@ -479,7 +415,7 @@ header::after {
             <div class="experience-item">
                 <div class="experience-title">Développeur Web Full Stack</div>
                 <div class="experience-company">Projets freelance</div>
-                <div class="experience-date">2020 - Présent</div>
+                <div class="experience-date">2025 - Présent</div>
                 <ul class="experience-description">
                     <li>Développement de sites web avec WordPress</li>
                     <li>Création d'applications web avec PHP et Symfony</li>
@@ -599,8 +535,8 @@ window.onload = function() {
                 drops[i] = 0;
             }
             
-            // Faire descendre la goutte
-            drops[i] += 0.2;
+            // Faire descendre la goutte - vitesse réduite
+            drops[i] += 0.1; // Ralenti de 0.2 à 0.1
         }
         
         // Continuer l'animation
