@@ -366,6 +366,96 @@ header::after {
         height: 150px;
     }
 }
+/* Modales */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: linear-gradient(145deg, #0c1421, #0a2540);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    border: 2px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                0 0 20px rgba(0, 229, 255, 0.2);
+    position: relative;
+}
+
+.modal-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    background: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 5px 15px rgba(0, 180, 216, 0.3);
+}
+
+.modal-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 24px;
+    color: var(--accent);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.modal-description {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.modal-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.modal-detail-item {
+    background: rgba(0, 180, 216, 0.2);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: var(--light);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--light);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--accent);
+}
+
+.skill:hover, .skill[data-skill]:hover {
+    cursor: pointer;
+}
     </style>
 </head>
 <body>
@@ -388,7 +478,7 @@ header::after {
             <div class="profile-contact">
                 <span><i>📧</i> arnaudbarotteaux@gmail.com</span>
                 <span><i>📱</i> +33 6 44 76 27 21</span>
-                <span><i>🌐</i> <a href="https://portfolio1-plum-theta.vercel.app/index.html" target="_blank">portfolio-chi-neon-30.vercel.app</a></span>
+                <span><i>🌐</i> <a href="https://portfolio1-plum-theta.vercel.app/index.html" target="_blank">portfolio</a></span>
             </div>
         </header>
         
@@ -531,7 +621,7 @@ J'intègre également des solutions no-code comme Softr, Airtable, Zapier, Figma
     </div>
 
     <script>
-        // Effet Matrix pour la photo de profil
+       // Effet Matrix pour la photo de profil
 window.onload = function() {
     const canvas = document.getElementById('matrix');
     if (!canvas) {
@@ -605,7 +695,6 @@ window.onload = function() {
     window.addEventListener('resize', resizeCanvas);
 };
 
-
 // Fonction pour animer le texte lettre par lettre
 function animateText(elementId, text) {
     const element = document.getElementById(elementId);
@@ -658,6 +747,140 @@ function animateText(elementId, text) {
     addLetter();
 }
 
+// Données pour les modales
+const modalData = {
+    'HTML5': {
+        title: 'HTML5',
+        description: 'Langage de balisage pour structurer le contenu web. HTML5 apporte de nouvelles fonctionnalités sémantiques et multimédias.',
+        details: ['Sémantique', 'Canvas', 'Audio/Vidéo', 'Formulaires avancés']
+    },
+    'CSS3/SASS': {
+        title: 'CSS3/SASS',
+        description: 'Technologies de stylisation avancées pour créer des interfaces modernes et responsives.',
+        details: ['Flexbox', 'Grid', 'Animations', 'Responsive Design']
+    },
+    'React': {
+        title: 'React',
+        description: 'Bibliothèque JavaScript pour construire des interfaces utilisateur dynamiques et interactives.',
+        details: ['Components', 'Hooks', 'State Management', 'Virtual DOM']
+    },
+    'TypeScript': {
+        title: 'TypeScript',
+        description: 'Superset de JavaScript qui ajoute le typage statique pour un code plus robuste.',
+        details: ['Typage statique', 'Interfaces', 'Générics', 'Compilation']
+    },
+    'PHP': {
+        title: 'PHP',
+        description: 'Langage de script côté serveur pour le développement web dynamique.',
+        details: ['Programmation orientée objet', 'Gestion BDD', 'APIs', 'Frameworks']
+    },
+    'Symfony': {
+        title: 'Symfony',
+        description: 'Framework PHP professionnel pour développer des applications web robustes.',
+        details: ['MVC', 'Bundles', 'Twig', 'Doctrine']
+    },
+    'WordPress': {
+        title: 'WordPress',
+        description: 'CMS le plus populaire au monde pour créer des sites web et blogs.',
+        details: ['Thèmes', 'Plugins', 'Customizer', 'Gutenberg']
+    },
+    'React Native': {
+        title: 'React Native',
+        description: 'Framework pour développer des applications mobiles natives avec React.',
+        details: ['Cross-platform', 'Performance native', 'Hot reload', 'Composants natifs']
+    },
+    'Expo': {
+        title: 'Expo',
+        description: 'Plateforme qui simplifie le développement et le déploiement d\'applications React Native.',
+        details: ['Développement rapide', 'Over-the-air updates', 'Build cloud', 'APIs natives']
+    },
+    'SQL': {
+        title: 'SQL',
+        description: 'Langage de requête pour gérer et manipuler les bases de données relationnelles.',
+        details: ['Requêtes complexes', 'Jointures', 'Optimisation', 'Procédures stockées']
+    },
+    'NoSQL': {
+        title: 'NoSQL',
+        description: 'Bases de données non-relationnelles pour des données flexibles et scalables.',
+        details: ['MongoDB', 'Document-based', 'Scalabilité', 'Flexibilité']
+    },
+    'Figma': {
+        title: 'Figma',
+        description: 'Outil de design collaboratif pour créer des interfaces et prototypes.',
+        details: ['Design collaboratif', 'Prototypage', 'Composants', 'Design system']
+    },
+    'Softr': {
+        title: 'Softr',
+        description: 'Plateforme no-code pour créer des applications web à partir d\'Airtable.',
+        details: ['No-code', 'Templates', 'Airtable sync', 'Responsive']
+    },
+    'Airtable': {
+        title: 'Airtable',
+        description: 'Base de données cloud qui combine la simplicité d\'un tableur avec la puissance d\'une base de données.',
+        details: ['Interface intuitive', 'Collaboration', 'Automatisation', 'APIs']
+    },
+    'Zapier': {
+        title: 'Zapier',
+        description: 'Plateforme d\'automatisation qui connecte vos applications favorites.',
+        details: ['Automatisation', 'Intégrations', 'Workflows', 'Triggers']
+    },
+    'Sport': {
+        title: 'Sport',
+        description: 'Pratique régulière d\'activités physiques pour maintenir une excellente condition.',
+        details: ['Force athlétique', 'Cardio boxing']
+    },
+    'Lecture': {
+        title: 'Lecture',
+        description: 'Passion pour la lecture dans divers domaines pour enrichir mes connaissances.',
+        details: ['Science fiction', 'Psychologie']
+    },
+    'Arts martiaux': {
+        title: 'Arts martiaux',
+        description: 'Pratique des arts martiaux pour développer discipline, respect et techniques de combat.',
+        details: ['Kung fu', 'Boxe thaï']
+    }
+};
+
+// Fonction pour ouvrir une modale
+function openModal(skillName) {
+    const modal = document.getElementById('modal');
+    const data = modalData[skillName];
+    
+    if (data && modal) {
+        const modalIcon = document.getElementById('modal-icon');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDescription = document.getElementById('modal-description');
+        const detailsContainer = document.getElementById('modal-details');
+        
+        if (modalIcon) modalIcon.textContent = data.icon;
+        if (modalTitle) modalTitle.textContent = data.title;
+        if (modalDescription) modalDescription.textContent = data.description;
+        
+        if (detailsContainer) {
+            detailsContainer.innerHTML = '';
+            
+            if (data.details) {
+                data.details.forEach(detail => {
+                    const item = document.createElement('span');
+                    item.className = 'modal-detail-item';
+                    item.textContent = detail;
+                    detailsContainer.appendChild(item);
+                });
+            }
+        }
+        
+        modal.style.display = 'flex';
+    }
+}
+
+// Fonction pour fermer une modale
+function closeModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
 // Définir les titres des sections
 const titles = {
     'about-title': 'À propos',
@@ -667,16 +890,46 @@ const titles = {
     'hobbies-title': 'Centres d\'intérêt'
 };
 
-// Animer chaque titre avec un délai pour les décaler
+// Tout initialiser quand le DOM est prêt
 document.addEventListener('DOMContentLoaded', function() {
+    // Animer les titres
     let delay = 0;
     for (const [id, text] of Object.entries(titles)) {
         setTimeout(() => {
             animateText(id, text);
         }, delay);
-        delay += 500; // Décalage entre les animations des différents titres
+        delay += 500;
+    }
+    
+    // Ajouter les événements de clic aux compétences
+    const skills = document.querySelectorAll('.skill');
+    skills.forEach(skill => {
+        skill.addEventListener('click', function() {
+            const skillName = this.textContent.trim();
+            openModal(skillName);
+        });
+    });
+    
+    // Fermer la modale en cliquant à l'extérieur
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
     }
 });
     </script>
+    <!-- Modales -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <div class="modal-icon" id="modal-icon"></div>
+        <h3 class="modal-title" id="modal-title"></h3>
+        <p class="modal-description" id="modal-description"></p>
+        <div class="modal-details" id="modal-details"></div>
+    </div>
+</div>
 </body>
 </html>
